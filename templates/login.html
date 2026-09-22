@@ -116,6 +116,78 @@
             margin-bottom: 30px;
         }
 
+        /* =========================
+           THÔNG BÁO LỖI ĐĂNG NHẬP
+           ========================= */
+
+        .error-message {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 13px 15px;
+            margin-bottom: 20px;
+
+            background: rgba(255, 82, 109, 0.08);
+            border: 1px solid rgba(255, 82, 109, 0.28);
+            border-radius: 12px;
+
+            animation: errorIn 0.25s ease;
+        }
+
+        .error-icon {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255, 82, 109, 0.15);
+            border: 1px solid rgba(255, 82, 109, 0.25);
+
+            color: #ff8093;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .error-content {
+            flex: 1;
+        }
+
+        .error-content strong {
+            display: block;
+            color: #ff8093;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .error-content p {
+            margin: 0;
+            color: #b8a0a7;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        @keyframes errorIn {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           TABS
+           ========================= */
+
         .tabs {
             display: flex;
             gap: 10px;
@@ -131,12 +203,21 @@
             color: #aeb4ce;
             cursor: pointer;
             font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .tab:hover {
+            background: rgba(255,255,255,0.1);
         }
 
         .tab.active {
             background: #527cff;
             color: white;
         }
+
+        /* =========================
+           FORM
+           ========================= */
 
         .form {
             display: none;
@@ -162,6 +243,11 @@
             color: white;
             outline: none;
             font-size: 15px;
+            transition: 0.2s;
+        }
+
+        input::placeholder {
+            color: #6f7690;
         }
 
         input:focus {
@@ -169,23 +255,45 @@
             box-shadow: 0 0 0 3px rgba(102,140,255,0.12);
         }
 
+        /* =========================
+           BUTTON
+           ========================= */
+
         .button {
             width: 100%;
             margin-top: 25px;
             padding: 15px;
             border: none;
             border-radius: 12px;
-            background: linear-gradient(135deg, #527cff, #7657e8);
+
+            background: linear-gradient(
+                135deg,
+                #527cff,
+                #7657e8
+            );
+
             color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
+
             box-shadow: 0 10px 25px rgba(82,124,255,0.25);
+
+            transition: 0.2s;
         }
 
         .button:hover {
             transform: translateY(-2px);
+            box-shadow: 0 14px 30px rgba(82,124,255,0.35);
         }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        /* =========================
+           SECURITY
+           ========================= */
 
         .security {
             text-align: center;
@@ -194,9 +302,20 @@
             margin-top: 25px;
         }
 
+        /* =========================
+           MOBILE
+           ========================= */
+
         @media(max-width: 800px) {
+
+            body {
+                overflow-y: auto;
+                padding: 20px 0;
+            }
+
             .container {
                 width: 95%;
+                min-height: auto;
             }
 
             .left {
@@ -205,6 +324,30 @@
 
             .right {
                 width: 100%;
+                padding: 40px 28px;
+            }
+
+            .title {
+                font-size: 26px;
+            }
+        }
+
+        @media(max-width: 450px) {
+
+            .right {
+                padding: 32px 22px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .button {
+                font-size: 15px;
             }
         }
     </style>
@@ -214,8 +357,15 @@
 
 <div class="container">
 
+    <!-- =========================
+         BÊN TRÁI
+         ========================= -->
+
     <div class="left">
-        <div class="logo">CIPHER<span>LAB</span></div>
+
+        <div class="logo">
+            CIPHER<span>LAB</span>
+        </div>
 
         <div class="tagline">
             Phòng thí nghiệm mật mã trực tuyến,
@@ -242,26 +392,96 @@
             <div class="icon">🛡️</div>
             <span>Giao diện bảo mật chuyên nghiệp</span>
         </div>
+
     </div>
+
+
+    <!-- =========================
+         BÊN PHẢI
+         ========================= -->
 
     <div class="right">
 
-        <h1 class="title">Chào mừng trở lại</h1>
-        <p class="subtitle">Đăng nhập để tiếp tục vào CIPHERLAB</p>
+        <h1 class="title">
+            Chào mừng trở lại
+        </h1>
+
+        <p class="subtitle">
+            Đăng nhập để tiếp tục vào CIPHERLAB
+        </p>
+
+
+        <!-- =========================
+             THÔNG BÁO TỪ FLASK
+             ========================= -->
+
+        {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+
+                <div class="error-message">
+
+                    <div class="error-icon">
+                        !
+                    </div>
+
+                    <div class="error-content">
+
+                        <strong>
+                            Đăng nhập thất bại
+                        </strong>
+
+                        <p>
+                            {{ messages[0] }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- =========================
+             TAB
+             ========================= -->
 
         <div class="tabs">
-            <button class="tab active" onclick="showForm('login', this)">
+
+            <button
+                class="tab active"
+                onclick="showForm('login', this)"
+            >
                 Đăng nhập
             </button>
 
-            <button class="tab" onclick="showForm('register', this)">
+            <button
+                class="tab"
+                onclick="showForm('register', this)"
+            >
                 Đăng ký
             </button>
+
         </div>
 
-        <form id="login" class="form active" method="POST" action="/login">
 
-            <label>Tên đăng nhập</label>
+        <!-- =========================
+             ĐĂNG NHẬP
+             ========================= -->
+
+        <form
+            id="login"
+            class="form active"
+            method="POST"
+            action="/login"
+        >
+
+            <label>
+                Tên đăng nhập
+            </label>
+
             <input
                 type="text"
                 name="username"
@@ -269,7 +489,11 @@
                 required
             >
 
-            <label>Mật khẩu</label>
+
+            <label>
+                Mật khẩu
+            </label>
+
             <input
                 type="password"
                 name="password"
@@ -277,15 +501,32 @@
                 required
             >
 
-            <button class="button" type="submit">
+
+            <button
+                class="button"
+                type="submit"
+            >
                 ĐĂNG NHẬP
             </button>
 
         </form>
 
-        <form id="register" class="form" method="POST" action="/register">
 
-            <label>Tên đăng nhập</label>
+        <!-- =========================
+             ĐĂNG KÝ
+             ========================= -->
+
+        <form
+            id="register"
+            class="form"
+            method="POST"
+            action="/register"
+        >
+
+            <label>
+                Tên đăng nhập
+            </label>
+
             <input
                 type="text"
                 name="username"
@@ -293,7 +534,11 @@
                 required
             >
 
-            <label>Email</label>
+
+            <label>
+                Email
+            </label>
+
             <input
                 type="email"
                 name="email"
@@ -301,7 +546,11 @@
                 required
             >
 
-            <label>Mật khẩu</label>
+
+            <label>
+                Mật khẩu
+            </label>
+
             <input
                 type="password"
                 name="password"
@@ -309,33 +558,64 @@
                 required
             >
 
-            <button class="button" type="submit">
+
+            <button
+                class="button"
+                type="submit"
+            >
                 TẠO TÀI KHOẢN
             </button>
 
         </form>
+
+
+        <!-- =========================
+             FOOTER
+             ========================= -->
 
         <div class="security">
             🔒 CIPHERLAB • Secure Authentication System
         </div>
 
     </div>
+
 </div>
 
+
+<!-- =========================
+     JAVASCRIPT
+     ========================= -->
+
 <script>
+
     function showForm(formName, button) {
 
-        document.querySelectorAll(".form").forEach(function(form) {
-            form.classList.remove("active");
-        });
+        document
+            .querySelectorAll(".form")
+            .forEach(function(form) {
 
-        document.querySelectorAll(".tab").forEach(function(tab) {
-            tab.classList.remove("active");
-        });
+                form.classList.remove("active");
 
-        document.getElementById(formName).classList.add("active");
+            });
+
+
+        document
+            .querySelectorAll(".tab")
+            .forEach(function(tab) {
+
+                tab.classList.remove("active");
+
+            });
+
+
+        document
+            .getElementById(formName)
+            .classList.add("active");
+
+
         button.classList.add("active");
     }
+
 </script>
 
 </body>
