@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIPHERLAB | Đăng nhập</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 20% 20%, #263b78 0%, transparent 35%),
+                radial-gradient(circle at 80% 80%, #531c67 0%, transparent 35%),
+                #080b18;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 80px rgba(255,255,255,0.02),
+                0 0 0 160px rgba(255,255,255,0.015);
+        }
+
+        .container {
+            width: 900px;
+            min-height: 560px;
+            display: flex;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 28px;
+            overflow: hidden;
+            background: rgba(15, 19, 40, 0.82);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+
+        .left {
+            width: 48%;
+            padding: 55px;
+            background: linear-gradient(
+                145deg,
+                rgba(45, 70, 150, 0.5),
+                rgba(70, 25, 100, 0.35)
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .logo span {
+            color: #7aa7ff;
+        }
+
+        .tagline {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #c5cbea;
+            margin-bottom: 35px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 16px 0;
+            color: #dfe3ff;
+        }
+
+        .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(122,167,255,0.15);
+            border: 1px solid rgba(122,167,255,0.3);
+        }
+
+        .right {
+            width: 52%;
+            padding: 55px;
+            background: rgba(8, 11, 25, 0.55);
+        }
+
+        .title {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #9ca3bd;
+            margin-bottom: 30px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            color: #aeb4ce;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .tab.active {
+            background: #527cff;
+            color: white;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            color: #cdd2e8;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.055);
+            color: white;
+            outline: none;
+            font-size: 15px;
+        }
+
+        input:focus {
+            border-color: #668cff;
+            box-shadow: 0 0 0 3px rgba(102,140,255,0.12);
+        }
+
+        .button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #527cff, #7657e8);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(82,124,255,0.25);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .security {
+            text-align: center;
+            color: #777f9d;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        @media(max-width: 800px) {
+            .container {
+                width: 95%;
+            }
+
+            .left {
+                display: none;
+            }
+
+            .right {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+        <div class="logo">CIPHER<span>LAB</span></div>
+
+        <div class="tagline">
+            Phòng thí nghiệm mật mã trực tuyến,
+            nơi bạn có thể khám phá và so sánh
+            các thuật toán mã hóa.
+        </div>
+
+        <div class="feature">
+            <div class="icon">🔐</div>
+            <span>Không gian mã hóa hiện đại</span>
+        </div>
+
+        <div class="feature">
+            <div class="icon">⚡</div>
+            <span>Thực nghiệm nhiều thuật toán</span>
+        </div>
+
+        <div class="feature">
+            <div class="icon">📊</div>
+            <span>Lưu và đánh giá kết quả</span>
+        </div>
+
+        <div class="feature">
+            <div class="icon">🛡️</div>
+            <span>Giao diện bảo mật chuyên nghiệp</span>
+        </div>
+    </div>
+
+    <div class="right">
+
+        <h1 class="title">Chào mừng trở lại</h1>
+        <p class="subtitle">Đăng nhập để tiếp tục vào CIPHERLAB</p>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showForm('login', this)">
+                Đăng nhập
+            </button>
+
+            <button class="tab" onclick="showForm('register', this)">
+                Đăng ký
+            </button>
+        </div>
+
+        <form id="login" class="form active" method="POST" action="/login">
+
+            <label>Tên đăng nhập</label>
+            <input
+                type="text"
+                name="username"
+                placeholder="Nhập tên đăng nhập"
+                required
+            >
+
+            <label>Mật khẩu</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Nhập mật khẩu"
+                required
+            >
+
+            <button class="button" type="submit">
+                ĐĂNG NHẬP
+            </button>
+
+        </form>
+
+        <form id="register" class="form" method="POST" action="/register">
+
+            <label>Tên đăng nhập</label>
+            <input
+                type="text"
+                name="username"
+                placeholder="Tạo tên đăng nhập"
+                required
+            >
+
+            <label>Email</label>
+            <input
+                type="email"
+                name="email"
+                placeholder="example@email.com"
+                required
+            >
+
+            <label>Mật khẩu</label>
+            <input
+                type="password"
+                name="password"
+                placeholder="Tạo mật khẩu"
+                required
+            >
+
+            <button class="button" type="submit">
+                TẠO TÀI KHOẢN
+            </button>
+
+        </form>
+
+        <div class="security">
+            🔒 CIPHERLAB • Secure Authentication System
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function showForm(formName, button) {
+
+        document.querySelectorAll(".form").forEach(function(form) {
+            form.classList.remove("active");
+        });
+
+        document.querySelectorAll(".tab").forEach(function(tab) {
+            tab.classList.remove("active");
+        });
+
+        document.getElementById(formName).classList.add("active");
+        button.classList.add("active");
+    }
+</script>
+
+</body>
+</html>

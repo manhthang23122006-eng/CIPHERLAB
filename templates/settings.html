@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERLAB | Cài đặt</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at 70% 10%,
+                    #263b78 0%,
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    #4b164c 0%,
+                    transparent 25%
+                ),
+                #070b18;
+        }
+
+        .container {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            padding: 50px 25px;
+        }
+
+        .top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+        }
+
+        h1 {
+            font-size: 32px;
+        }
+
+        .subtitle {
+
+            color: #8993ad;
+
+            margin-top: 8px;
+        }
+
+        .back {
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+            background:
+                rgba(255,255,255,0.07);
+        }
+
+        .panel {
+
+            padding: 30px;
+
+            margin-bottom: 20px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+        .panel h2 {
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+        }
+
+        .setting {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 18px 0;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.07);
+        }
+
+        .setting:last-child {
+            border-bottom: none;
+        }
+
+        .setting p {
+
+            color: #8993ad;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+        .badge {
+
+            padding: 7px 12px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(80,210,140,0.1);
+
+            color: #68d99a;
+
+            font-size: 12px;
+        }
+
+        .button {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            color: white;
+
+            text-decoration: none;
+
+            background: #587eff;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <div class="top">
+
+        <div>
+
+            <h1>⚙️ Cài đặt</h1>
+
+            <div class="subtitle">
+                Quản lý thông tin và hệ thống CIPHERLAB
+            </div>
+
+        </div>
+
+        <a
+            href="/dashboard"
+            class="back">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h2>👤 Tài khoản</h2>
+
+        <div class="setting">
+
+            <div>
+
+                <strong>
+                    Tên người dùng
+                </strong>
+
+                <p>
+                    Tài khoản hiện tại
+                </p>
+
+            </div>
+
+            <div class="badge">
+
+                {{ session["username"] }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h2>🔐 Hệ thống bảo mật</h2>
+
+        <div class="setting">
+
+            <div>
+
+                <strong>
+                    Trạng thái hệ thống
+                </strong>
+
+                <p>
+                    CIPHERLAB đang hoạt động bình thường
+                </p>
+
+            </div>
+
+            <div class="badge">
+                ACTIVE
+            </div>
+
+        </div>
+
+
+        <div class="setting">
+
+            <div>
+
+                <strong>
+                    Thuật toán
+                </strong>
+
+                <p>
+                    AES, DES, RSA, ElGamal, MD5, SHA-256
+                </p>
+
+            </div>
+
+            <div class="badge">
+                6 READY
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h2>ℹ️ Thông tin</h2>
+
+        <div class="setting">
+
+            <div>
+
+                <strong>
+                    CIPHERLAB
+                </strong>
+
+                <p>
+                    Hệ thống thực hành và tìm hiểu các thuật toán mật mã
+                </p>
+
+            </div>
+
+        </div>
+
+        <a
+            href="/dashboard"
+            class="button">
+
+            Quay lại Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

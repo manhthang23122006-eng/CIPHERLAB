@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERLAB | Quiz</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 70% 10%,
+                    #263b78 0%,
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    #4b164c 0%,
+                    transparent 25%
+                ),
+                #070b18;
+
+            color: white;
+
+            padding: 40px;
+        }
+
+
+        .container {
+
+            max-width: 900px;
+
+            margin: auto;
+        }
+
+
+        .top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            letter-spacing: 3px;
+        }
+
+
+        .logo span {
+
+            color: #6ea8ff;
+        }
+
+
+        .back {
+
+            color: #9da7c0;
+
+            text-decoration: none;
+
+            padding: 10px 16px;
+
+            border-radius: 10px;
+
+            background: rgba(255,255,255,0.05);
+        }
+
+
+        .back:hover {
+
+            color: white;
+
+            background: rgba(255,255,255,0.1);
+        }
+
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .header h1 {
+
+            font-size: 32px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .header p {
+
+            color: #8993ad;
+        }
+
+
+        .question {
+
+            background: rgba(255,255,255,0.045);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .question h3 {
+
+            margin-bottom: 18px;
+
+            font-size: 17px;
+        }
+
+
+        label {
+
+            display: block;
+
+            padding: 13px 15px;
+
+            margin-bottom: 8px;
+
+            border-radius: 10px;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid transparent;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        label:hover {
+
+            border-color: #587eff;
+
+            background: rgba(88,126,255,0.08);
+        }
+
+
+        input {
+
+            margin-right: 10px;
+        }
+
+
+        .submit {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            background: linear-gradient(
+                135deg,
+                #4d7cff,
+                #8757ff
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 10px;
+        }
+
+
+        .submit:hover {
+
+            opacity: 0.9;
+        }
+
+
+        #result {
+
+            display: none;
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            background: rgba(80,210,140,0.08);
+
+            border: 1px solid rgba(80,210,140,0.25);
+        }
+
+
+        #result h2 {
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+
+        #result p {
+
+            color: #9da7c0;
+
+            margin-bottom: 20px;
+        }
+
+
+        .again {
+
+            display: inline-block;
+
+            padding: 11px 20px;
+
+            border-radius: 10px;
+
+            background: #4d7cff;
+
+            color: white;
+
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="top">
+
+        <div class="logo">
+
+            CIPHER<span>LAB</span>
+
+        </div>
+
+        <a href="/dashboard" class="back">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <div class="header">
+
+        <h1>🎯 Quiz CIPHERLAB</h1>
+
+        <p>
+            Kiểm tra kiến thức về các thuật toán mật mã
+        </p>
+
+    </div>
+
+
+    <form id="quizForm">
+
+
+        <!-- CÂU 1 -->
+
+        <div class="question">
+
+            <h3>
+                1. AES là thuật toán thuộc loại nào?
+            </h3>
+
+            <label>
+                <input type="radio" name="q1" value="A">
+                A. Mã hóa bất đối xứng
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="B">
+                B. Mã hóa đối xứng
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="C">
+                C. Hàm băm
+            </label>
+
+            <label>
+                <input type="radio" name="q1" value="D">
+                D. Chữ ký số
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 2 -->
+
+        <div class="question">
+
+            <h3>
+                2. RSA sử dụng loại khóa nào?
+            </h3>
+
+            <label>
+                <input type="radio" name="q2" value="A">
+                A. Chỉ khóa bí mật
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="B">
+                B. Chỉ khóa công khai
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="C">
+                C. Khóa công khai và khóa bí mật
+            </label>
+
+            <label>
+                <input type="radio" name="q2" value="D">
+                D. Không sử dụng khóa
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 3 -->
+
+        <div class="question">
+
+            <h3>
+                3. MD5 thuộc nhóm thuật toán nào?
+            </h3>
+
+            <label>
+                <input type="radio" name="q3" value="A">
+                A. Hàm băm
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="B">
+                B. Mã hóa đối xứng
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="C">
+                C. Mã hóa bất đối xứng
+            </label>
+
+            <label>
+                <input type="radio" name="q3" value="D">
+                D. Trao đổi khóa
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 4 -->
+
+        <div class="question">
+
+            <h3>
+                4. SHA-256 tạo ra chuỗi băm có độ dài bao nhiêu bit?
+            </h3>
+
+            <label>
+                <input type="radio" name="q4" value="A">
+                A. 64 bit
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="B">
+                B. 128 bit
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="C">
+                C. 160 bit
+            </label>
+
+            <label>
+                <input type="radio" name="q4" value="D">
+                D. 256 bit
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 5 -->
+
+        <div class="question">
+
+            <h3>
+                5. DES sử dụng khóa có độ dài hiệu dụng bao nhiêu bit?
+            </h3>
+
+            <label>
+                <input type="radio" name="q5" value="A">
+                A. 32 bit
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="B">
+                B. 56 bit
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="C">
+                C. 128 bit
+            </label>
+
+            <label>
+                <input type="radio" name="q5" value="D">
+                D. 256 bit
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 6 -->
+
+        <div class="question">
+
+            <h3>
+                6. ElGamal thuộc loại mã hóa nào?
+            </h3>
+
+            <label>
+                <input type="radio" name="q6" value="A">
+                A. Đối xứng
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="B">
+                B. Hàm băm
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="C">
+                C. Bất đối xứng
+            </label>
+
+            <label>
+                <input type="radio" name="q6" value="D">
+                D. Nén dữ liệu
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 7 -->
+
+        <div class="question">
+
+            <h3>
+                7. Khóa công khai trong RSA được dùng để làm gì?
+            </h3>
+
+            <label>
+                <input type="radio" name="q7" value="A">
+                A. Mã hóa dữ liệu
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="B">
+                B. Xóa dữ liệu
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="C">
+                C. Tạo mật khẩu
+            </label>
+
+            <label>
+                <input type="radio" name="q7" value="D">
+                D. Nén dữ liệu
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 8 -->
+
+        <div class="question">
+
+            <h3>
+                8. Thuật toán nào dưới đây là hàm băm?
+            </h3>
+
+            <label>
+                <input type="radio" name="q8" value="A">
+                A. AES
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="B">
+                B. RSA
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="C">
+                C. DES
+            </label>
+
+            <label>
+                <input type="radio" name="q8" value="D">
+                D. SHA-256
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 9 -->
+
+        <div class="question">
+
+            <h3>
+                9. AES thường được sử dụng để?
+            </h3>
+
+            <label>
+                <input type="radio" name="q9" value="A">
+                A. Băm dữ liệu
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="B">
+                B. Mã hóa dữ liệu
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="C">
+                C. Tạo địa chỉ IP
+            </label>
+
+            <label>
+                <input type="radio" name="q9" value="D">
+                D. Nén hình ảnh
+            </label>
+
+        </div>
+
+
+        <!-- CÂU 10 -->
+
+        <div class="question">
+
+            <h3>
+                10. Đặc điểm chính của mã hóa bất đối xứng là gì?
+            </h3>
+
+            <label>
+                <input type="radio" name="q10" value="A">
+                A. Chỉ có một khóa
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="B">
+                B. Không có khóa
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="C">
+                C. Sử dụng cặp khóa công khai và bí mật
+            </label>
+
+            <label>
+                <input type="radio" name="q10" value="D">
+                D. Chỉ dùng hàm băm
+            </label>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="submit"
+        >
+            NỘP BÀI
+        </button>
+
+    </form>
+
+
+    <div id="result">
+
+        <h2 id="score"></h2>
+
+        <p id="message"></p>
+
+        <a href="/quiz" class="again">
+            Làm lại Quiz
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+document
+.getElementById("quizForm")
+.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+
+    const answers = {};
+
+
+    for (let i = 1; i <= 10; i++) {
+
+        const selected =
+            document.querySelector(
+                `input[name="q${i}"]:checked`
+            );
+
+        if (!selected) {
+
+            alert(
+                "Bạn hãy trả lời đầy đủ 10 câu trước khi nộp bài!"
+            );
+
+            return;
+        }
+
+        answers[`q${i}`] = selected.value;
+    }
+
+
+    try {
+
+        const response = await fetch(
+            "/quiz/submit",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    answers: answers
+                })
+            }
+        );
+
+
+        const result =
+            await response.json();
+
+
+        if (!result.success) {
+
+            alert(
+                "Có lỗi: " +
+                result.error
+            );
+
+            return;
+        }
+
+
+        document
+        .getElementById("quizForm")
+        .style.display = "none";
+
+
+        document
+        .getElementById("result")
+        .style.display = "block";
+
+
+        document
+        .getElementById("score")
+        .innerText =
+            result.score +
+            "/" +
+            result.total +
+            " — " +
+            result.percent +
+            "%";
+
+
+        if (result.percent >= 80) {
+
+            document
+            .getElementById("message")
+            .innerText =
+                "🎉 Xuất sắc! Bạn nắm kiến thức khá tốt.";
+
+        }
+
+        else if (result.percent >= 50) {
+
+            document
+            .getElementById("message")
+            .innerText =
+                "👍 Khá tốt! Bạn có thể thử lại để đạt điểm cao hơn.";
+
+        }
+
+        else {
+
+            document
+            .getElementById("message")
+            .innerText =
+                "💪 Hãy ôn lại kiến thức và thử lại nhé.";
+
+        }
+
+    }
+
+    catch (error) {
+
+        alert(
+            "Không thể kết nối với máy chủ!"
+        );
+
+        console.error(error);
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>

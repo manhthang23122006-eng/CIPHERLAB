@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CIPHERLAB | Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background:
+                radial-gradient(
+                    circle at 70% 10%,
+                    #263b78 0%,
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 10% 90%,
+                    #4b164c 0%,
+                    transparent 25%
+                ),
+                #070b18;
+
+            color: white;
+            min-height: 100vh;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            padding: 28px 18px;
+            background: rgba(8,12,28,0.88);
+            border-right: 1px solid rgba(255,255,255,0.08);
+            position: fixed;
+            height: 100vh;
+        }
+
+        .logo {
+            padding: 0 15px 35px;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .logo span {
+            color: #6ea8ff;
+        }
+
+        .menu-title {
+            color: #606a85;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 0 15px;
+            margin-bottom: 10px;
+        }
+
+        .menu {
+            list-style: none;
+        }
+
+        .menu li {
+            margin-bottom: 7px;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 15px;
+            color: #9da7c0;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: 0.25s;
+        }
+
+        .menu a:hover,
+        .menu a.active {
+            color: white;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(75,119,255,0.25),
+                    rgba(120,80,255,0.12)
+                );
+        }
+
+        .menu-icon {
+            width: 25px;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .logout {
+            position: absolute;
+            bottom: 25px;
+            left: 18px;
+            right: 18px;
+        }
+
+        .logout a {
+            color: #ff8093;
+        }
+
+        /* MAIN */
+
+        .main {
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 35px 45px;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #8993ad;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 9px 15px;
+            border-radius: 30px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                linear-gradient(
+                    135deg,
+                    #4d7cff,
+                    #8757ff
+                );
+            font-weight: bold;
+        }
+
+        .username {
+            color: #dce2f3;
+        }
+
+        /* STATISTICS */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            padding: 23px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.045);
+            transition: 0.25s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(100,150,255,0.35);
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #8d97b0;
+            font-size: 13px;
+        }
+
+        .card-icon {
+            font-size: 22px;
+        }
+
+        .number {
+            font-size: 31px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .change {
+            margin-top: 7px;
+            color: #67d99b;
+            font-size: 12px;
+        }
+
+        /* CONTENT */
+
+        .content {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            padding: 25px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .panel-header h2 {
+            font-size: 18px;
+        }
+
+        .panel-header span {
+            color: #72809f;
+            font-size: 12px;
+        }
+
+        /* ALGORITHMS */
+
+        .algorithm {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 7px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            color: white;
+            text-decoration: none;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+        .algorithm:hover {
+            background: rgba(255,255,255,0.055);
+            border-color: rgba(88,126,255,0.35);
+            transform: translateX(5px);
+        }
+
+        .alg-icon {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(75,120,255,0.12);
+            font-size: 20px;
+        }
+
+        .alg-info {
+            flex: 1;
+        }
+
+        .alg-info h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .alg-info p {
+            color: #747f99;
+            font-size: 12px;
+        }
+
+        .status {
+            font-size: 11px;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: rgba(80,210,140,0.1);
+            color: #68d99a;
+        }
+
+        /* QUICK ACTION */
+
+        .action {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.035);
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.06);
+            transition: 0.2s;
+        }
+
+        .action:hover {
+            border-color: #587eff;
+            transform: translateX(4px);
+        }
+
+        .action-icon {
+            font-size: 23px;
+        }
+
+        .action p {
+            color: #7d879f;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width:1000px) {
+
+            .stats {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:700px) {
+
+            .sidebar {
+                width: 70px;
+            }
+
+            .logo,
+            .menu-title,
+            .menu a span,
+            .logout a span {
+                display: none;
+            }
+
+            .main {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+                padding: 25px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            CIPHER<span>LAB</span>
+        </div>
+
+        <div class="menu-title">
+            Workspace
+        </div>
+
+        <ul class="menu">
+
+            <li>
+                <a href="/dashboard" class="active">
+                    <div class="menu-icon">🏠</div>
+                    <span>Tổng quan</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="#algorithms">
+                    <div class="menu-icon">🔐</div>
+                    <span>Thuật toán</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/aes">
+                    <div class="menu-icon">🧪</div>
+                    <span>Phòng thí nghiệm</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/statistics">
+                    <div class="menu-icon">📊</div>
+                    <span>Phân tích</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/history">
+                    <div class="menu-icon">📜</div>
+                    <span>Lịch sử</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/quiz">
+                    <div class="menu-icon">🎯</div>
+                    <span>Quiz</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div
+            class="menu-title"
+            style="margin-top:35px;"
+        >
+            System
+        </div>
+
+
+        <ul class="menu">
+
+            <li>
+                <a href="/settings">
+                    <div class="menu-icon">⚙️</div>
+                    <span>Cài đặt</span>
+                </a>
+            </li>
+
+        </ul>
+
+
+        <div class="logout">
+
+            <a
+                href="/logout"
+                class="menu"
+            >
+
+                <div class="menu-icon">🚪</div>
+
+                <span>Đăng xuất</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div class="welcome">
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Chào mừng bạn quay trở lại CIPHERLAB 👋
+                </p>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    U
+                </div>
+
+                <div class="username">
+                    {{ session["username"] }}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span>
+                        Lần thực hiện
+                    </span>
+
+                    <div class="card-icon">
+                        🧪
+                    </div>
+
+                </div>
+
+                <div class="number">
+                    0
+                </div>
+
+                <div class="change">
+                    Bắt đầu trải nghiệm
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span>
+                        Thuật toán
+                    </span>
+
+                    <div class="card-icon">
+                        🔐
+                    </div>
+
+                </div>
+
+                <div class="number">
+                    6
+                </div>
+
+                <div class="change">
+                    Đã sẵn sàng
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span>
+                        Quiz
+                    </span>
+
+                    <div class="card-icon">
+                        🎯
+                    </div>
+
+                </div>
+
+                <div class="number">
+                    0%
+                </div>
+
+                <div class="change">
+                    Chưa thực hiện
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="card-top">
+
+                    <span>
+                        Trạng thái
+                    </span>
+
+                    <div class="card-icon">
+                        🛡️
+                    </div>
+
+                </div>
+
+                <div class="number">
+                    OK
+                </div>
+
+                <div class="change">
+                    Hệ thống hoạt động
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="content">
+
+
+            <!-- ALGORITHMS -->
+
+            <div
+                class="panel"
+                id="algorithms"
+            >
+
+                <div class="panel-header">
+
+                    <h2>
+                        🔐 Thuật toán mật mã
+                    </h2>
+
+                    <span>
+                        6 algorithms
+                    </span>
+
+                </div>
+
+
+                <!-- AES -->
+
+                <a
+                    href="/aes"
+                    class="algorithm"
+                >
+
+                    <div class="alg-icon">
+                        ⚡
+                    </div>
+
+                    <div class="alg-info">
+
+                        <h3>
+                            AES
+                        </h3>
+
+                        <p>
+                            Mã hóa đối xứng
+                        </p>
+
+                    </div>
+
+                    <div class="status">
+                        READY
+                    </div>
+
+                </a>
+
+
+                <!-- DES -->
+
+                <a
+                    href="/des"
+                    class="algorithm"
+                >
+
+                    <div class="alg-icon">
+                        🔒
+                    </div>
+
+                    <div class="alg-info">
+
+                        <h3>
+                            DES
+                        </h3>
+
+                        <p>
+                            Mã hóa đối xứng
+                        </p>
+
+                    </div>
+
+                    <div class="status">
+                        READY
+                    </div>
+
+                </a>
+
+
+                <!-- RSA -->
+
+                <a
+                    href="/rsa"
+                    class="algorithm"
+                >
+
+                    <div class="alg-icon">
+                        🔑
+                    </div>
+
+                    <div class="alg-info">
+
+                        <h3>
+                            RSA
+                        </h3>
+
+                        <p>
+                            Mã hóa bất đối xứng
+                        </p>
+
+                    </div>
+
+                    <div class="status">
+                        READY
+                    </div>
+
+                </a>
+
+
+                <!-- ELGAMAL -->
+
+                <a
+                    href="/elgamal"
+                    class="algorithm"
+                >
+
+                    <div class="alg-icon">
+                        🛡️
+                    </div>
+
+                    <div class="alg-info">
+
+                        <h3>
+                            ElGamal
+                        </h3>
+
+                        <p>
+                            Mã hóa bất đối xứng
+                        </p>
+
+                    </div>
+
+                    <div class="status">
+                        READY
+                    </div>
+
+                </a>
+
+
+                <!-- MD5 -->
+
+                <a
+                    href="/md5"
+                    class="algorithm"
+                >
+
+                    <div class="alg-icon">
+                        #
+                    </div>
+
+                    <div class="alg-info">
+
+                        <h3>
+                            MD5
+                        </h3>
+
+                        <p>
+                            Hàm băm dữ liệu
+                        </p>
+
+                    </div>
+
+                    <div class="status">
+                        READY
+                    </div>
+
+                </a>
+
+
+                <!-- SHA256 -->
+
+                <a
+                    href="/sha256"
+                    class="algorithm"
+                >
+
+                    <div class="alg-icon">
+                        🔢
+                    </div>
+
+                    <div class="alg-info">
+
+                        <h3>
+                            SHA-256
+                        </h3>
+
+                        <p>
+                            Hàm băm dữ liệu
+                        </p>
+
+                    </div>
+
+                    <div class="status">
+                        READY
+                    </div>
+
+                </a>
+
+            </div>
+
+
+            <!-- QUICK ACTION -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h2>
+                        ⚡ Thao tác nhanh
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="/aes"
+                    class="action"
+                >
+
+                    <div class="action-icon">
+                        🧪
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Phòng thí nghiệm
+                        </strong>
+
+                        <p>
+                            Bắt đầu mã hóa dữ liệu
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/statistics"
+                    class="action"
+                >
+
+                    <div class="action-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Phân tích
+                        </strong>
+
+                        <p>
+                            Xem thống kê hoạt động
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/quiz"
+                    class="action"
+                >
+
+                    <div class="action-icon">
+                        🎯
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Kiểm tra kiến thức
+                        </strong>
+
+                        <p>
+                            Thử sức với Quiz
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="/history"
+                    class="action"
+                >
+
+                    <div class="action-icon">
+                        📜
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Lịch sử hoạt động
+                        </strong>
+
+                        <p>
+                            Xem các lần thực hành
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
